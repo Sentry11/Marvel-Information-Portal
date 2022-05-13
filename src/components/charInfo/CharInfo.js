@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 
 
-
 import PropTypes from 'prop-types'
 import useMarvelService from '../../services/MarvelService';
 import Spinner from '../spinner/Spinner';
@@ -9,19 +8,21 @@ import ErrorMessage from '../errorMessage/ErrorMessage';
 import Skeleton from '../skeleton/Skeleton';
 
 import './charInfo.scss';
+import { Link, useParams } from 'react-router-dom';
 
 const CharInfo = (props) => {
 
     
     const [char, setChar] = useState(null);
-
-    const {loading,error,getCharacter, clearError} =  useMarvelService();
+    const {loading,error,getCharacter,clearError} =  useMarvelService();
 
    
+    const {comicsId} = useParams();
+
     useEffect(() => {
 
         updateChar();   
-
+    // eslint-disable-next-line
     }, [props.charId])
 
 
@@ -65,6 +66,16 @@ const View = ({char}) => {
         imgStyle = {'objectFit' : 'contain'};
     }
 
+
+    // Unsafe function to get id from character/comics/resourceURI 
+    // 
+
+    const getId = (str) =>{
+        return str.substring(str.length - 5);
+    } 
+
+
+
     return (
         <>
             <div className="char__basics">
@@ -92,9 +103,14 @@ const View = ({char}) => {
                         // eslint-disable-next-line
                         if (i > 9) return;
                         return (
+                          
                             <li key={i} className="char__comics-item">
+                           
+                                <Link to = {`/comics/${getId(item.resourceURI)}`}>
                                 {item.name}
+                                </Link>
                             </li>
+                           
                         )
                     })
                 }                
