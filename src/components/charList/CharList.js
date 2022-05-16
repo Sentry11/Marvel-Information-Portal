@@ -1,4 +1,5 @@
 import {useEffect, useState, useRef} from 'react';
+import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
 
 import PropTypes from 'prop-types';
@@ -68,11 +69,11 @@ const CharList = (props) => {
             }
             
             return (
+                <CSSTransition key={item.id} timeout={500} classNames="char__item">
                 <li 
                     className="char__item"
                     tabIndex={0}
                     ref = {el => itemRefs.current[i] = el}
-                    key={item.id}
                     onClick={() => {
                        props.onCharSelected(item.id);
                        focusOnItem(i);
@@ -86,30 +87,33 @@ const CharList = (props) => {
                         <img src={item.thumbnail} alt={item.name} style={imgStyle}/>
                         <div className="char__name">{item.name}</div>
                 </li>
+                </CSSTransition>
             )
+            
         });
         // А эта конструкция вынесена для центровки спиннера/ошибки
         return (
             <ul className="char__grid">
+                <TransitionGroup component={null}>
                 {items}
+                </TransitionGroup>
             </ul>
         )
     }
+    
 
-  
-        
         const items = renderItems(charList);
 
         const errorMessage = error ? <ErrorMessage/> : null;
         const spinner = loading && !newItemLoading ? <Spinner/> : null;
-      
 
-        return (
-            <div className="char__list">
-                {errorMessage}
-                {spinner}
-                {items}
-                <button 
+
+            return (
+                <div className="char__list" >
+                    {errorMessage}
+                    {spinner}
+                    {items}
+                    <button 
                     className="button button__main button__long"
                     disabled={newItemLoading}
                     style={{'display': charEnded ? 'none' : 'block'}}
