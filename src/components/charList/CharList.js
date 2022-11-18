@@ -1,12 +1,10 @@
 import {useEffect, useState, useRef, useMemo} from 'react';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
-
 import ErrorMessage from '../errorMessage/ErrorMessage';
 import Spinner from '../spinner/Spinner';
 import PropTypes from 'prop-types';
 import useMarvelService from '../../services/MarvelService';
 import './charList.scss';
-
 
 const setContent = (process, Component, newItemLoading ) => {
     switch (process){
@@ -27,16 +25,11 @@ const setContent = (process, Component, newItemLoading ) => {
     }
 }
 
-
 const CharList = (props) => {
-
-
     const[charList, setCharList] = useState([]);
     const[newItemLoading, setNewItemLoading] = useState(false)
     const[offset, setOffset] = useState(210);
     const[charEnded, setCharEnded] = useState(false);
-
-
    const {getAllCharacters,process, setProcess} =  useMarvelService();
 
    useEffect(() => {
@@ -44,16 +37,12 @@ const CharList = (props) => {
       // eslint-disable-next-line
     },[])
   
-
     const onRequest = (offset, initial) => {
         initial ?  setNewItemLoading(false) :setNewItemLoading(true);
         getAllCharacters(offset)
             .then(onCharListLoaded)
             .then(() => setProcess('confirmed'));
     }
-
- 
-
     const onCharListLoaded = (newCharList) => {
         let ended = false;
         if (newCharList.length < 9) {
@@ -66,22 +55,14 @@ const CharList = (props) => {
         setOffset(offset => offset + 9);
         setCharEnded(charEnded => ended);
     }
-
-
     const itemRefs = useRef([]);
-
-   
-
-
     const focusOnItem = (id) => {
 
         itemRefs.current.forEach(item => item.classList.remove('char__item_selected'));
         itemRefs.current[id].classList.add('char__item_selected');
         itemRefs.current[id].focus();
     }
-
-
-
+    
     function renderItems(arr) {
         const items =  arr.map((item,i) => {
             let imgStyle = {'objectFit' : 'cover'};
@@ -112,7 +93,7 @@ const CharList = (props) => {
             )
             
         });
-        // А эта конструкция вынесена для центровки спиннера/ошибки
+        // эта конструкция вынесена для центровки спиннера/ошибки
         return (
             <ul className="char__grid">
                 <TransitionGroup component={null}>
@@ -121,8 +102,6 @@ const CharList = (props) => {
             </ul>
         )
     }
-    
-
     const elements = useMemo(() => {
         return   setContent(process, () => renderItems(charList), newItemLoading);
         // eslint-disable-next-line
