@@ -1,14 +1,8 @@
 
 import { BrowserRouter as Router, Route , Routes, } from "react-router-dom";
 import { lazy,Suspense } from "react";
-
-//import {MainPage ,ComicsPage} from '../pages';
-
-
-
 import AppHeader from "../appHeader/AppHeader";
 import Spinner from "../spinner/Spinner";
-
 
 const MainPage = lazy(() => import('../pages/MainPage') );
 const ComicsPage = lazy(() => import("../pages/ComicsPage") );
@@ -18,8 +12,6 @@ const SingleCharacterLayout = lazy(() => import('../pages/singleCharacterLayout/
 const SinglePage = lazy(() => import("../pages/SinglePage") );
 
 const App = () =>  {
-    
-
         return (
             <Router>
             <div className="app">
