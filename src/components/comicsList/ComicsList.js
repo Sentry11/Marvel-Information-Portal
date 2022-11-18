@@ -5,7 +5,6 @@ import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 import './comicsList.scss';
 
-
 const setContent = (process, Component, newItemLoading ) => {
     switch (process){
         case 'waiting': 
@@ -31,10 +30,7 @@ const ComicsList = () => {
     const[newComicsLoading, setNewComicsLoading] = useState(false);
     const[offset, setOffset] = useState(0);
     const[comicsEnded, setComicsEnded] = useState(false);
-
-
     const {getAllComics,process,setProcess} =  useMarvelService();
-
 
     useEffect(() => {
         onRequest(offset, true);
@@ -60,10 +56,7 @@ const ComicsList = () => {
         setOffset(offset => offset + 8);
         setComicsEnded(charEnded => ended);
     }  
-
-
-
-
+    
     function renderItems(arr) {
         const items =  arr.map((item,i) => {
             return (
@@ -86,9 +79,7 @@ const ComicsList = () => {
             </ul>
         )
     }
-
- 
-
+    
     return (
         <div className="comics__list" >
           {setContent(process, () => renderItems(comicsList), newComicsLoading)}
