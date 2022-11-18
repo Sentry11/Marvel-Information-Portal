@@ -4,9 +4,7 @@ import './singleCharacterLayout.scss';
 const SingleCharacterLayout = ({data}) => {
 
     const {name, description, thumbnail} = data;
-
     return (
-
         <div className="single-comic">
         <Helmet>
             <meta
