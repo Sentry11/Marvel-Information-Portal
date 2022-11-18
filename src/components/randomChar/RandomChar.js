@@ -1,39 +1,32 @@
 import { useState, useEffect } from 'react';
-
 import useMarvelService from '../../services/MarvelService';
 import setContent from '../../utils/setContent';
-
 import './randomChar.scss';
 import mjolnir from '../../resources/img/mjolnir.png';
 
 const RandomChar = () => {
-   
    const [char, setChar] = useState({});
    const  {getCharacter, clearError, process,setProcess} =  useMarvelService();
-
 
     useEffect(() => {
         updateChar();
         const timerId = setInterval(updateChar, 60000);
-
         return () => {
             clearInterval(timerId)
         }// eslint-disable-next-line
     }, [] )
 
+   
     const onCharLoaded = (char) => {
         setChar(char);
     }
-
-  
 
     const updateChar = () => {
         clearError();
         const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
         getCharacter(id)
             .then(onCharLoaded)
-            .then(() => setProcess('confirmed'))
-          
+            .then(() => setProcess('confirmed'))      
     }
 
         return (
