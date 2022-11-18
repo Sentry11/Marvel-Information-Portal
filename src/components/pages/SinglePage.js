@@ -1,11 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-
 import setContent from '../../utils/setContent';
 import useMarvelService from '../../services/MarvelService';
-
 import AppBanner from "../appBanner/AppBanner";
-
 
 const SinglePage = ({Component, dataType}) => {
         const {Id} = useParams();
@@ -19,7 +16,6 @@ const SinglePage = ({Component, dataType}) => {
 
         const updateData = () => {
             clearError();
-
             switch (dataType) {
                 case 'comic':
                     getComics(Id).then(onDataLoaded).then(() => setProcess('confirmed'))
@@ -34,7 +30,6 @@ const SinglePage = ({Component, dataType}) => {
         const onDataLoaded = (data) => {
             setData(data);
         }
-
 
         return (
             <>
