@@ -1,10 +1,6 @@
-
-
 import {useHttp} from '../hooks/http.hook'
 
-
 const  useMarvelService = () => {
-
 
    const {request, clearError, process, setProcess} = useHttp();
 
@@ -13,8 +9,6 @@ const  useMarvelService = () => {
    const  _apiKey = 'apikey=fd711f982060d28f8c59a417cdc31a88';
 
    let  _baseOffset = 210;
-
-    
 
    const  getAllCharacters = async (offset = _baseOffset) => {
         const res = await request(`${_apiBase}characters?limit=9&offset=${offset}&${_apiKey}`);
@@ -53,8 +47,6 @@ const  useMarvelService = () => {
             price: comics.prices.price ? `${comics.prices.price}$` : 'not available'
         }
     }
-
-
 
     const _transformCharacter = (char) => {
         return {
