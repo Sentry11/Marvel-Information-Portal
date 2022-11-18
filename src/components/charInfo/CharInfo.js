@@ -1,28 +1,19 @@
 import { useState, useEffect } from 'react';
-
-
 import PropTypes from 'prop-types'
 import useMarvelService from '../../services/MarvelService';
 import setContent from '../../utils/setContent';
-
-import './charInfo.scss';
 import { Link } from 'react-router-dom';
+import './charInfo.scss';
 
 const CharInfo = (props) => {
-
     
     const [char, setChar] = useState(null);
     const {getCharacter,clearError, process, setProcess} =  useMarvelService();
 
-   
-
     useEffect(() => {
-
         updateChar();   
     // eslint-disable-next-line
     }, [props.charId])
-
-
 
    const updateChar = () => {
         const {charId} = props;
@@ -46,7 +37,6 @@ const CharInfo = (props) => {
              {setContent(process,View, char)}
             </div>
         )
-
 } 
 
 const View = ({data}) => {
@@ -57,15 +47,11 @@ const View = ({data}) => {
         imgStyle = {'objectFit' : 'contain'};
     }
 
-
     // Unsafe function to get id from character/comics/resourceURI 
     // 
-
     const getId = (str) =>{
         return str.substring(str.length - 5);
     } 
-
-
 
     return (
         <>
@@ -93,21 +79,16 @@ const View = ({data}) => {
                     comics.map((item, i) => {
                         // eslint-disable-next-line
                         if (i > 9) return;
-                        return (
-                          
-                            <li key={i} className="char__comics-item">
-                           
+                        return (                       
+                            <li key={i} className="char__comics-item">                  
                                 <Link to = {`/comics/${getId(item.resourceURI)}`}>
                                 {item.name}
                                 </Link>
-                            </li>
-                           
+                            </li>                           
                         )
                     })
                 }                
-            </ul>
-
-            
+            </ul>       
         </>
     )
 }
