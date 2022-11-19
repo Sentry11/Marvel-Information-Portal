@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Preview
 
 This application was developed based on the Marvel API.It is an information portal that has served me as a practice in learning React.<br/>
 
