@@ -14,8 +14,9 @@ Moreover on this project, the principle of a finite automaton was implemented.<b
 <li>Character search service;
 <li>Dynamic list for every comic book character they appear in;<br/>
 <br/>The peculiarity of this project is just its modularity, each function or functionality is divided into folders.<br/> This simplifies the work with the project and makes it easy to read.<br/>
-## Stack of technologies that were used:
- <ul> 
+<br/><b> Stack of technologies that were used:</b>
+ 
+ <ul>
   <li>hooks:
     <ul>
       <li>useState
@@ -39,13 +40,12 @@ Moreover on this project, the principle of a finite automaton was implemented.<b
         <li>Lazy
         <li>Suspence
       </ul>
-</ul> </br>  
--</br>
+
 ## Deploy  
 To run applications on your computer, first you need to install this repository on your PC.<br/>
 Then install all dependencies with npm i command. Next, on the official website of the marvel api,
 you need to register and get an api key. This is necessary if my key does not work for you.<br/>
-Next, in the services directory in the MarvelServices file, you need to change the _apiKey variable
+Next, in the services directory in the MarvelServices file, you need to change the apiKey variable
 to the one you received on the Marvel website<br/>
 ## Host
 You can see whole build project by clicking on the next link<br/>
